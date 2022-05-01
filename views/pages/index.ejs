@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('../partials/head.ejs'); %>
+</head>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <div class="jumbotron">
+            <h1>Hello mohamed</h1>
+            <p>Welcome to notes </p>
+            <div class="container">
+                <h2>Vertical (basic) form</h2>
+                <form  name="add-note" action="/notes" method="POST">
+                    <div class="container mb-3">
+                        <div class="row">
+                            <div class="col-10 ">
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Title</label>
+                                    <input type="text" class="form-control" name="title" id="title" placeholder="title">
+                                </div>
+                            </div>
+                            <div class="col align-self-center">
+                                <select class="form-select form-select-sm" name="done" aria-label=".form-select-sm">
+                                    <option selected>select status</option>
+                                    <option value="true">done</option>
+                                    <option value="false">still in progress</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="desc" class="form-label">description</label>
+                            <textarea class="form-control" id="desc" name="desc" rows="3" placeholder="A new note"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <button class="btn btn-primary " value="save" type="submit">Add note</button>
+                        </div>
+                </form>
+            </div>
+
+            <ol class="list-group list-group-numbered ">
+                <% notes.forEach(function(note) { %>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">
+                                <%= note.title %>
+                            </div>
+                            <%= note.desc %>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">
+                            <%= note.done %>
+                        </span>
+                        <div>
+
+                            <a class="btn btn-raised btn-danger" href="/notes/delete/<%= note._id %>">Delete</a></td> 
+
+                        </div>  
+                    </li>
+                    <% }); %>
+            </ol>
+
+        </div>
+     
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+
+</html>
