@@ -26,7 +26,7 @@ services:
   notes-app:
     build: .
     ports:
-      - 80:3000
+      - 8080:3000
     restart: always
 volumes:
   mongo-data:
